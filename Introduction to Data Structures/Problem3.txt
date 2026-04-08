@@ -1,0 +1,196 @@
+E-Learning Platform Prerequisite Checking – Complexity Analysis
+
+(a) Time Complexity Analysis
+
+Implementation A (Nested Loop)
+
+Outer loop runs for each prerequisite. Number of iterations = m
+
+Inner loop scans completed courses. Number of iterations = n
+
+Worst-case comparisons: T(n,m) = m × n
+
+Time Complexity: O(nm)
+
+Implementation B (Hash Set)
+
+Step 1: Create hash set of completed courses Loop runs n times → O(n)
+
+Step 2: Check prerequisites using hash lookup Loop runs m times → O(m)
+
+Total time: T(n,m) = O(n) + O(m)
+
+Time Complexity: O(n + m)
+
+(b) Space Complexity (Auxiliary Space)
+
+Implementation A
+
+Uses only variables: i, j, found
+
+Auxiliary Space: O(1)
+
+Implementation B
+
+Creates hash set storing n completed courses.
+
+Auxiliary Space: O(n)
+
+(c) System Calculation
+
+Given: n = 40 completed courses m = 5 prerequisites Students per day =
+100,000
+
+Total comparisons per day for Implementation A
+
+Comparisons per student:
+
+m × n 5 × 40 = 200
+
+Total comparisons per day:
+
+200 × 100,000 = 20,000,000
+
+Total comparisons per day = 20 million
+
+Total memory usage per day for Implementation B
+
+Hash set entries per student = n = 40
+
+Memory per entry = 8 bytes
+
+Memory per student:
+
+40 × 8 = 320 bytes
+
+Memory for 100,000 students:
+
+320 × 100,000 = 32,000,000 bytes
+
+= 32 MB
+
+(d) Infrastructure Constraint Analysis
+
+Given:
+
+Maximum response time = 10 ms Comparison time = 0.1 microseconds
+Concurrent requests = 10,000 Memory limit = 1 GB
+
+Implementation A Response Time
+
+Comparisons per request:
+
+m × n 5 × 40 = 200
+
+Time per comparison:
+
+0.1 microseconds
+
+Total time:
+
+200 × 0.1 = 20 microseconds
+
+Convert to milliseconds:
+
+20 microseconds = 0.02 ms
+
+Result:
+
+0.02 ms < 10 ms
+
+Response time constraint satisfied
+
+Implementation B Memory Usage
+
+Memory per request:
+
+40 × 8 = 320 bytes
+
+For 10,000 concurrent requests:
+
+320 × 10,000 = 3,200,000 bytes
+
+≈ 3.2 MB
+
+Memory limit = 1 GB
+
+Result:
+
+3.2 MB < 1 GB
+
+Memory constraint satisfied
+
+Decision
+
+Both implementations meet the constraints, but Implementation B is
+better because it scales better with increasing prerequisites and larger
+datasets.
+
+Chosen implementation: Hash Set approach (Implementation B)
+
+(e) Hybrid Strategy
+
+Use different strategies depending on number of prerequisites (m).
+
+Case 1: m very small (1–2)
+
+Using a hash set is unnecessary overhead.
+
+Use Nested Loop (Implementation A)
+
+Cost:
+
+O(n)
+
+Case 2: m large (20+)
+
+Linear search becomes inefficient.
+
+Use Hash Set (Implementation B)
+
+Cost:
+
+O(n + m)
+
+Threshold Determination
+
+Compare both complexities:
+
+Implementation A:
+
+T_A = n × m
+
+Implementation B:
+
+T_B = n + m
+
+Switch when:
+
+n × m > n + m
+
+Using n = 40:
+
+Test values:
+
+m = 1 40 × 1 = 40 40 + 1 = 41 Linear search acceptable
+
+m = 2 80 vs 42 Hash set becomes faster
+
+Practical threshold:
+
+m ≈ 4–5
+
+Final Hybrid Strategy
+
+If m ≤ 4 → use Nested Loop
+
+If m ≥ 5 → use Hash Set
+
+Conclusion
+
+Implementation A: Time Complexity = O(nm) Space Complexity = O(1)
+
+Implementation B: Time Complexity = O(n + m) Space Complexity = O(n)
+
+Best overall solution for scalable systems: Hash Set implementation with
+hybrid optimization.
