@@ -1,0 +1,127 @@
+Algorithm Analysis – Weather Forecasting Average Temperature
+
+(a) Evaluation using the Five Fundamental Properties of an Algorithm
+
+Algorithm A
+
+Input: Takes temperature array and n (number of days).
+
+Output: Returns the average temperature.
+
+Definiteness: Each step is clearly defined: 1. Initialize total 2. Add
+each temperature value 3. Divide by n
+
+Finiteness: The loop runs from 1 to n, which is finite.
+
+Effectiveness: Uses simple arithmetic operations (addition and
+division).
+
+Conclusion: Algorithm A satisfies all five properties of an algorithm.
+
+Algorithm B
+
+Input: Takes temperature array and n.
+
+Output: Returns a value stored in variable sum.
+
+Definiteness: Steps are clearly written.
+
+Finiteness: Both loops execute n times, so the algorithm terminates.
+
+Effectiveness: Uses simple arithmetic operations.
+
+Conclusion: Algorithm B satisfies the formal properties of an algorithm
+but contains a logical error that produces incorrect results.
+
+(b) Step-by-Step Execution
+
+Input: temperatures = [20, 25, 22, 24, 21] n = 5
+
+Algorithm A Execution
+
+total = 0
+
+i=1 → total = 0 + 20 = 20 i=2 → total = 20 + 25 = 45 i=3 → total = 45 +
+22 = 67 i=4 → total = 67 + 24 = 91 i=5 → total = 91 + 21 = 112
+
+average = 112 / 5 = 22.4
+
+Correct Output = 22.4
+
+Algorithm B Execution
+
+sum = temperature[1] = 20
+
+First Loop (Addition)
+
+i=2 → sum = 20 + 25 = 45 i=3 → sum = 45 + 22 = 67 i=4 → sum = 67 + 24 =
+91 i=5 → sum = 91 + 21 = 112
+
+Second Loop (Division)
+
+i=1 → 112 / 5 = 22.4 i=2 → 22.4 / 5 = 4.48 i=3 → 4.48 / 5 = 0.896 i=4 →
+0.896 / 5 = 0.1792 i=5 → 0.1792 / 5 = 0.03584
+
+Final Output = 0.03584 (Incorrect)
+
+(c) Logical Error in Algorithm B
+
+Error: The algorithm divides the sum by n inside a loop that runs n
+times.
+
+for i = 1 to n: sum = sum / n
+
+Instead of dividing once, it repeatedly divides the result.
+
+Correct formula for average:
+
+Average = (sum of temperatures) / n
+
+Algorithm B effectively computes:
+
+(sum of temperatures) / n^n
+
+Thus it violates the mathematical rule for calculating averages.
+
+(d) Comparison of Algorithms
+
+Simplicity: Algorithm A is simpler and easier to understand. Algorithm B
+is more complex.
+
+Correctness: Algorithm A produces the correct result. Algorithm B
+produces incorrect results.
+
+Efficiency: Algorithm A time complexity = O(n) Algorithm B time
+complexity = O(2n) ≈ O(n)
+
+Even though both are linear time, Algorithm B performs unnecessary extra
+operations.
+
+Conclusion: Algorithm A should be used in production because it is
+correct, simpler, and efficient.
+
+(e) Test Strategy
+
+To verify correctness, the algorithm should be tested with different
+cases including edge cases.
+
+Test Case 1: Input: [20,25,22,24,21], n=5 Expected Output: 22.4 Purpose:
+Normal case
+
+Test Case 2: Input: [30], n=1 Expected Output: 30 Purpose: Single value
+edge case
+
+Test Case 3: Input: [], n=0 Expected Output: Error or undefined Purpose:
+Division by zero check
+
+Test Case 4: Input: [-5,-10,-3,-8], n=4 Expected Output: -6.5 Purpose:
+Negative temperature values
+
+Test Case 5: Input: [10,-5,20,-10], n=4 Expected Output: 3.75 Purpose:
+Mixed positive and negative values
+
+Final Conclusion
+
+Algorithm A is the correct and recommended algorithm for calculating the
+average temperature in the weather forecasting system because it is
+accurate, simple, and efficient.

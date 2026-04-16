@@ -1,0 +1,136 @@
+Username Search Algorithms Analysis
+
+(a) Worst-case comparisons for n = 10,000,000 users
+
+Algorithm A – Linear Search Worst case: username not found or found at
+last position. Comparisons = n
+
+n = 10,000,000
+
+Comparisons = 10,000,000
+
+Algorithm B – Binary Search Worst case comparisons almost equal tp log2(n)
+
+log2(10,000,000) = log10(10,000,000) / log10(2) = 7 / 0.301 ≈ 23.25
+
+Worst case = 24 comparisons
+
+Algorithm C – Hash Table Lookup Average lookup time = constant
+
+Comparisons = 1
+
+(b) Time Complexity using Big-O
+
+Algorithm A (Linear Search) Loop checks each element.
+
+T(n) = n Time Complexity = O(n)
+
+Algorithm B (Binary Search) Search space halves every step.
+
+T(n) = log2(n) Time Complexity = O(log n)
+
+Algorithm C (Hash Table) Lookup using hashing.
+
+Average time = constant
+
+Time Complexity = O(1)
+
+(c) Comparison Table
+
+n = 100 Linear Search = 100 Binary Search = log2(100) ≈ 7 Hash Lookup = 1
+
+n = 1,000 Linear Search = 1000 Binary Search = log2(1000) ≈ 10 Hash Lookup = 1
+
+n = 10,000 Linear Search = 10,000 Binary Search = log2(10000) ≈ 14 Hash Lookup = 1
+
+n = 100,000 Linear Search = 100,000 Binary Search = log2(100000) ≈ 17 Hash Lookup = 1
+
+n = 1,000,000 Linear Search = 1,000,000 Binary Search = log2(1000000) = 20 Hash Lookup = 1
+
+n = 10,000,000 Linear Search = 10,000,000 Binary Search = log2(10000000)=  24 Hash Lookup = 1
+
+Observed Pattern Linear Search grows linearly. Binary Search grows very slowly. Hash Table remains constant.
+
+(d) Performance for 50,000 checks per second
+
+Each comparison = 1 nanosecond
+
+Linear Search
+
+Comparisons per search = 10,000,000
+
+Time per search = 10,000,000 ns = 0.01 seconds
+
+Time for 50,000 searches
+
+0.01 × 50,000 = 500 seconds
+
+Result: Cannot handle load
+
+Binary Search
+
+Comparisons ≈ 24
+
+Time per search
+
+24 ns
+
+Time for 50,000 searches
+
+24 × 50,000 = 1,200,000 ns = 1.2 ms
+
+Result: Handles load easily
+
+Hash Table
+
+Comparisons = 1
+
+Time per search
+
+1 ns
+
+Time for 50,000 searches
+
+50,000 ns = 0.05 ms
+
+Result: Fastest solution
+
+(e) When sorting + binary search becomes worthwhile
+
+Sorting cost:
+
+O(n log n)
+
+Linear search for k searches:
+
+k × O(n)
+
+Binary search after sorting:
+
+O(n log n) + k × O(log n)
+
+Binary search becomes better when:
+
+n log n + k log n < k n
+
+Rearranging:
+
+k(n − log n) > n log n
+
+Therefore:
+
+k > (n log n) / (n − log n)
+
+Example for n = 10,000,000
+
+log2(n) ≈ 24
+
+k > (10,000,000 × 24) / (10,000,000 − 24)
+
+k ≈ 24 searches
+
+Conclusion
+
+Linear Search: O(n), extremely slow for large datasets. Binary Search:- O(log n), very efficient if list is sorted. Hash Table Lookup:-O(1) , best choice for username verification systems.
+
+Recommended algorithm for production systems: Hash Table Lookup.
